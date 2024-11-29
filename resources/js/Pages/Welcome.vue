@@ -17,6 +17,5 @@ function handleImageError() {
 </script>
 
 <template>
-    <Head title="Welcome" />
-    <Button>Test</Button>
+    <h1>Test</h1>
 </template>
