@@ -10,7 +10,13 @@ import { Button } from "@/Components/ui/button";
 import { Input } from "@/Components/ui/input";
 import { Link } from "@inertiajs/vue3";
 import { Menu } from "lucide-vue-next";
-import { Sheet, SheetTrigger, SheetContent } from "@/Components/ui/sheet";
+import {
+    Sheet,
+    SheetTrigger,
+    SheetContent,
+    SheetTitle,
+    SheetDescription,
+} from "@/Components/ui/sheet";
 </script>
 <template>
     <div
@@ -57,6 +63,11 @@ import { Sheet, SheetTrigger, SheetContent } from "@/Components/ui/sheet";
                         </Button>
                     </SheetTrigger>
                     <SheetContent side="left" class="flex flex-col">
+                        <SheetTitle>
+                            <ApplicationLogo
+                                class="block w-auto fill-current h-9"
+                        /></SheetTitle>
+                        <SheetDescription class="hidden"></SheetDescription>
                         <nav class="grid gap-2 py-6 text-lg font-medium">
                             <RouterItem />
                         </nav>
@@ -65,10 +76,9 @@ import { Sheet, SheetTrigger, SheetContent } from "@/Components/ui/sheet";
                 <div class="flex-1 w-full">
                     <form>
                         <div class="relative">
-                            <!-- <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />-->
                             <Input
                                 type="search"
-                                placeholder="Search products..."
+                                placeholder="Search..."
                                 class="w-full pl-8 shadow-none appearance-none bg-background md:w-2/3 lg:w-1/3"
                             />
                         </div>
@@ -114,26 +124,6 @@ import { Sheet, SheetTrigger, SheetContent } from "@/Components/ui/sheet";
                         </template>
                     </Dropdown>
                 </div>
-                <DropdownMenu>
-                    <DropdownMenuTrigger as-child>
-                        <Button
-                            variant="secondary"
-                            size="icon"
-                            class="rounded-full"
-                        >
-                            <CircleUser class="w-5 h-5" />
-                            <span class="sr-only">Toggle user menu</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Settings</DropdownMenuItem>
-                        <DropdownMenuItem>Support</DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Logout</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
             </header>
             <main class="flex flex-col flex-1 gap-4 p-4 lg:gap-6 lg:p-6">
                 <div class="flex items-center">
