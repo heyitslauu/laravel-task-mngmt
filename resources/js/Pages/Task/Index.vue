@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
 import { defineProps } from "vue";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
-// Define the type of the tasks prop
+import { columns } from "./Table/columns";
+
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import DataTable from "./Table/DataTable.vue";
+
 const props = defineProps<{
     tasks: {
         data: Array<{
@@ -16,7 +20,9 @@ const props = defineProps<{
     };
 }>();
 
-// Method to navigate to a different page
+onMounted(() => {
+    console.log(props.tasks);
+});
 </script>
 
 <template>
@@ -29,36 +35,7 @@ const props = defineProps<{
             </h2>
         </template>
         <div>
-            <div>
-                <h1>This is the Index</h1>
-
-                <!-- Loop through tasks and display them -->
-                <div v-for="task in props.tasks.data" :key="task.id">
-                    <h2>{{ task.title }}</h2>
-                    <p>{{ task.description }}</p>
-                    <p>Status: {{ task.status }}</p>
-                </div>
-
-                <!-- Pagination -->
-                <div v-if="props.tasks.last_page > 1">
-                    <button
-                        v-if="props.tasks.current_page > 1"
-                        @click="console.log(props.tasks.current_page - 1)"
-                    >
-                        Previous
-                    </button>
-                    <button
-                        v-if="props.tasks.current_page < props.tasks.last_page"
-                        @click="console.log(props.tasks.current_page + 1)"
-                    >
-                        Next
-                    </button>
-                </div>
-            </div>
+            <DataTable :data="props.tasks.data" :columns="columns" />
         </div>
     </AuthenticatedLayout>
 </template>
-
-<style scoped>
-/* Add your styles here */
-</style>

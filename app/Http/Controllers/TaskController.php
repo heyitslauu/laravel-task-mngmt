@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
-
 
 class TaskController extends Controller
 {
@@ -19,7 +18,7 @@ class TaskController extends Controller
 
         // Return to Inertia with tasks data
         return Inertia::render('Task/Index', [
-            'tasks' => $tasks
+            'tasks' => $tasks,
         ]);
     }
 
