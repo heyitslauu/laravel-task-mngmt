@@ -4,6 +4,10 @@ import {
     CircleCheck,
     CircleHelp,
     CircleDotDashed,
+    Circle,
+    CircleDot,
+    TriangleAlert,
+    Flame,
 } from "lucide-vue-next";
 
 export interface Task {
@@ -36,5 +40,29 @@ export const statuses = [
         value: "stale",
         label: "stale",
         icon: h(CircleDotDashed),
+    },
+];
+
+export const priorities = [
+    {
+        value: "low",
+        label: "Low",
+        icon: h(Circle),
+    },
+    {
+        value: "medium",
+        label: "Mediun",
+        icon: h(CircleDot),
+    },
+
+    {
+        value: "high",
+        label: "High",
+        icon: h(TriangleAlert),
+    },
+    {
+        value: "highest",
+        label: "Urgent",
+        icon: h(Flame),
     },
 ];
