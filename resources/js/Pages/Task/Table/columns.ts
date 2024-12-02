@@ -1,6 +1,6 @@
 import { h } from "vue";
 import { Checkbox } from "@/Components/ui/checkbox";
-import { Task, statuses } from "./task";
+import { Task, statuses, priorities } from "./task";
 import { useDateFormat } from "@vueuse/core";
 import { Badge } from "@/Components/ui/badge";
 
@@ -66,6 +66,35 @@ export const columns: ColumnDef<Task>[] = [
         },
         // enableSorting: false,
         // enableHiding: false,
+    },
+    {
+        accessorKey: "priority",
+        header: () => h("div", { class: "text-left" }, "Priority Level"),
+        cell: ({ row }) => {
+            const priority = priorities.find(
+                (prio) => prio.value === row.getValue("priority")
+            );
+
+            if (!priority) return null;
+
+            const textColorClass =
+                {
+                    medium: "text-yellow-600", // Medium Priority
+                    high: "text-orange-600", // High Priority
+                    highest: "text-red-600", // Highest Priority
+                }[priority.value] || "text-muted-foreground"; // Default color
+
+            return h("div", { class: "flex w-[100px] items-center" }, [
+                priority.icon &&
+                    h(priority.icon, {
+                        class: `mr-2 h-4 w-4 ${textColorClass}`, // Apply dynamic text color
+                    }),
+                h("span", { class: "capitalize" }, priority.label),
+            ]);
+        },
+        filterFn: (row, id, value) => {
+            return value.includes(row.getValue(id));
+        },
     },
     {
         accessorKey: "created_at",

@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function index()
     {
         // Fetch tasks and paginate them (if needed)
-        $tasks = Task::paginate(10);  // Paginate 10 tasks per page
+        $tasks = Task::orderBy('created_at', 'desc')->paginate(10);
 
         // Return to Inertia with tasks data
         return Inertia::render('Task/Index', [

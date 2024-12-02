@@ -39,6 +39,7 @@ const props = defineProps<{
             title: string;
             description: string;
             status: string;
+            priority: string;
         }>;
         current_page: number;
         last_page: number;
@@ -55,10 +56,10 @@ const form = useForm({
 const submit = async () => {
     form.post(route("tasks.store"), {
         onFinish: () => {
-            form.reset("title", "description");
+            form.reset("title", "description", "priority");
         },
         onSuccess: () => {
-            form.reset("title", "description");
+            form.reset("title", "description", "priority");
             dialogShow.value = false;
         },
     });
@@ -141,7 +142,7 @@ onMounted(() => {
                                         ></Selection>
                                         <InputError
                                             class="mt-2"
-                                            :message="form.errors.description"
+                                            :message="form.errors.priority"
                                         />
                                     </div>
                                 </div>
