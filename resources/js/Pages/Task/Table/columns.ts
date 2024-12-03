@@ -3,6 +3,7 @@ import { Checkbox } from "@/Components/ui/checkbox";
 import { Task, statuses, priorities } from "./task";
 import { useDateFormat } from "@vueuse/core";
 import { Badge } from "@/Components/ui/badge";
+import DropdownAction from "./DropdownAction.vue";
 
 import type { ColumnDef } from "@tanstack/vue-table";
 
@@ -40,6 +41,18 @@ export const columns: ColumnDef<Task>[] = [
         accessorKey: "title",
         header: () => h("div", { class: "text-left" }, "Title"),
         cell: ({ row }) => h("div", row.getValue("title")),
+        enableSorting: false,
+        enableHiding: false,
+    },
+    {
+        accessorKey: "description",
+        header: () => h("div", { class: "text-left" }, "Description"),
+        cell: ({ row }) =>
+            h(
+                "div",
+                { class: "max-w-[200px] truncate " },
+                row.getValue("description")
+            ),
         enableSorting: false,
         enableHiding: false,
     },
@@ -115,5 +128,20 @@ export const columns: ColumnDef<Task>[] = [
         },
         enableSorting: false,
         enableHiding: false,
+    },
+    {
+        id: "actions",
+        enableHiding: false,
+        cell: ({ row }) => {
+            const task = row.original as Task;
+
+            return h(
+                "div",
+                { class: "relative" },
+                h(DropdownAction, {
+                    task: { ...task }, // Convert id to string
+                })
+            );
+        },
     },
 ];
