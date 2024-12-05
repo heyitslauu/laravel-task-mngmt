@@ -30,13 +30,13 @@ export const columns: ColumnDef<Task>[] = [
         enableSorting: false,
         enableHiding: false,
     },
-    {
-        accessorKey: "id",
-        header: () => h("div", { class: "text-left" }, "ID"),
-        cell: ({ row }) => h("div", row.getValue("id")),
-        enableSorting: false,
-        enableHiding: false,
-    },
+    // {
+    //     accessorKey: "id",
+    //     header: () => h("div", { class: "text-left" }, "ID"),
+    //     cell: ({ row }) => h("div", row.getValue("id")),
+    //     enableSorting: false,
+    //     enableHiding: false,
+    // },
     {
         accessorKey: "title",
         header: () => h("div", { class: "text-left" }, "Title"),
@@ -109,26 +109,26 @@ export const columns: ColumnDef<Task>[] = [
             return value.includes(row.getValue(id));
         },
     },
-    {
-        accessorKey: "created_at",
-        header: () => h("div", { class: "text-left" }, "Created At"),
-        cell: ({ row }) => {
-            const created = row.getValue("created_at");
+    // {
+    //     accessorKey: "created_at",
+    //     header: () => h("div", { class: "text-left" }, "Created At"),
+    //     cell: ({ row }) => {
+    //         const created = row.getValue("created_at");
 
-            // Safely parse the date or handle invalid cases
-            const date = created ? new Date(created as string) : null;
+    //         // Safely parse the date or handle invalid cases
+    //         const date = created ? new Date(created as string) : null;
 
-            // Check if `date` is valid
-            const formatted =
-                date && !isNaN(date.getTime())
-                    ? useDateFormat(date, "MMM DD, YYYY").value
-                    : "Invalid Date";
+    //         // Check if `date` is valid
+    //         const formatted =
+    //             date && !isNaN(date.getTime())
+    //                 ? useDateFormat(date, "MMM DD, YYYY").value
+    //                 : "Invalid Date";
 
-            return h("div", { class: "text-left " }, formatted);
-        },
-        enableSorting: false,
-        enableHiding: false,
-    },
+    //         return h("div", { class: "text-left " }, formatted);
+    //     },
+    //     enableSorting: false,
+    //     enableHiding: false,
+    // },
     {
         id: "actions",
         enableHiding: false,
