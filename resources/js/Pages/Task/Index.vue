@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { defineProps } from "vue";
+import { onMounted, ref, reactive } from "vue";
 import { Head, useForm } from "@inertiajs/vue3";
 import { columns } from "./Table/columns";
 import { PlusCircleIcon } from "lucide-vue-next";
 import { Input } from "@/Components/ui/input";
 import { Label } from "@/Components/ui/label";
 import { priorities } from "@/types/components";
+
 import {
     Select,
     SelectContent,
@@ -46,6 +46,8 @@ const props = defineProps<{
     };
 }>();
 
+const tasks = reactive(props.tasks);
+
 const dialogShow = ref<boolean>(false);
 const form = useForm({
     title: "",
@@ -64,9 +66,6 @@ const submit = async () => {
         },
     });
 };
-onMounted(() => {
-    console.log(props.tasks);
-});
 </script>
 
 <template>
