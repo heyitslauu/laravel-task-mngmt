@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-
+import Toaster from "@/Components/ui/toast/Toaster.vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
@@ -19,10 +19,10 @@ import {
 } from "@/Components/ui/sheet";
 </script>
 <template>
-    <div
-        class="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]"
-    >
-        <div class="hidden border-r bg-muted/40 md:block">
+    <Toaster />
+    <div class="lg:grid min-h-screen lg:grid-cols-[220px_1fr] w-full">
+        <!-- <div class="grid min-h-screen min-w-full lg:grid-cols-[280px_1fr]"> -->
+        <div class="hidden border-r bg-muted/40 lg:block">
             <div class="flex flex-col h-full max-h-screen gap-2">
                 <div
                     class="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6"
@@ -56,7 +56,7 @@ import {
                         <Button
                             variant="outline"
                             size="icon"
-                            class="shrink-0 md:hidden"
+                            class="shrink-0 lg:hidden"
                         >
                             <Menu class="w-5 h-5" />
                             <span class="sr-only">Toggle navigation menu</span>
