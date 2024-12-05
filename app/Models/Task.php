@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\TaskStatus;
 use App\Enums\Priority;
+use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

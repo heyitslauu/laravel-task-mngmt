@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
 use App\Http\Requests\TaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Task;
+use Inertia\Inertia;
 
 class TaskController extends Controller
 {
@@ -40,8 +40,6 @@ class TaskController extends Controller
         ]);
     }
 
-
-
     /**
      * Display the specified resource.
      */
@@ -61,9 +59,11 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $task->update($request->validated());
+
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully!');
     }
 
     /**
